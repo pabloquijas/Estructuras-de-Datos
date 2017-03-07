@@ -1,0 +1,23 @@
+/*
+TERMINADO
+Garcia Quijas Juan Pablo
+Estructura de Datos
+07/03/07
+*/
+#include <cstdio>
+
+int factorial(int n){
+    if(n == 0) return 1;
+    else return factorial(n-1)*n;//caso recursivo
+}
+int main(){
+    int n; //Entrada
+    //proceso
+    printf("Numero Factorial a Obtener: ");
+    scanf("%i", &n);
+
+    //Salida
+    printf("El resultado es: %i",factorial(n));
+
+return 0;
+}
