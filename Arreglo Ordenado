@@ -1,0 +1,118 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+#define MAX 100
+
+int V[MAX];
+int N = -1;
+
+int Buscar(int x){
+    int i;
+    i = 0;
+    while ((i <= N) && (V[i] < x))
+    i++;
+
+    if((i > N) || (V[i] > x))
+      return(-i);
+    else
+      return(i);
+}
+void InsertarOrdenado(int y){
+    int i, POS;
+
+    if (N < MAX){
+        POS = Buscar(y);
+        if(POS > 0){
+            printf("El elemento ya existe");
+            system("Pause");
+        }
+        else
+        POS = POS * -1;
+        N = N+1;
+        for(i = N; i >= (POS + 1); i--)
+           V[i] = V[i-1];
+        V[POS] = y;
+        }
+    else {
+        printf("No se puede insertar");
+    }
+}
+void EliminarOrdenado(int x){
+    int POS, I;
+    if(N > -1){
+        POS = Buscar(x);
+        if(POS < 0){
+            printf("El elemento no existe");
+            system("Pause");
+        }
+        else
+            N = N-1;
+            for(I = POS; I <= N; I++)
+               V[I]= V[I+1];
+    }
+        else{
+        printf("El arreglo esta vacio");
+        system("Pause");
+        }
+}
+void ModificarOrdenado(int x, int y){
+    int POS, I, K;
+    POS = Buscar(x);
+    if(POS >= 0){
+        EliminarOrdenado(x);
+        InsertarOrdenado(y);
+    }
+}
+void MostrarArreglo(){
+    int I;
+    for (I = 0; I <= N; I++)
+    printf("%i", V[I]);
+    system("Pause");
+
+}
+int main(){
+int opc;
+int x,y;
+do{
+    system("CLS");
+    printf("Arreglos Ordenados \n");
+    printf("1. Insertar \n");
+    printf("2. Eliminar \n");
+    printf("3. Modificar \n");
+    printf("Mostrar \n");
+    printf("5. Salir \n");
+
+    printf("Opcion: ");
+    scanf("%i", &opc);
+
+    switch(opc){
+    case 1: //Insertar un elemento
+    printf("Valor a insertar: ");
+    scanf("%i", &x);
+    InsertarOrdenado(x);
+    break;
+    case 2: //Eliminar un elemento
+    printf("Valor a eliminar: ");
+    scanf("%i", &y);
+    EliminarOrdenado(y);
+    break;
+    case 3:// Modificar un elemento
+    printf("Valor a modificar: ");
+    scanf("%i",&x);
+    printf("Nuevo valor: ");
+    scanf("%i",&y);
+    ModificarOrdenado(x,y);
+    break;
+    case 4: //Mostrar Arreglo
+    printf("Arreglo a mostrar: ");
+    MostrarArreglo();
+    break;
+    }//fin switch
+
+  }
+  while (opc!= 5); //Opcion de Salida
+
+ //fin Menu Principal
+    return 0;
+}
+
