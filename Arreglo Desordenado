@@ -1,0 +1,105 @@
+/*
+Juan Pablo Garcia Quijas
+*/
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX 100
+
+int v[MAX];
+int N = -1;
+
+void InsertarDesordenado(int y){
+    if(N <(MAX-1)){
+        N = N+1;
+        v[N]=y;
+    }
+    else{
+        printf("El valor no se puede insertar:");
+        system("Pause");
+    }
+
+}
+void EliminarDesordenado(int x){
+    int I,K;
+    I = 0;
+    while ((I <= N) && (x != v[I]))
+    I++;
+
+    if(I > N){
+    printf("El valor de x no se encuentra");
+    system("Pause");
+    }
+    else{
+        for(K=I; K <= N-1; K++)
+        v[K] = v[K+1];
+    K--;
+    }
+
+}
+void ModificarDesordenado(int x, int y){
+    int I, K;
+    I = 0;
+    while ((I <= N) && (x != v[I]))
+    I++;
+
+    if(I > N){
+        printf("El valor de x no se encuentra");
+        system("Pause");
+    }
+    else
+    v[I]= y;
+
+}
+void MostrarArreglo(){
+    int I;
+    for (I = 0; I <= N; I++)
+    printf("%i", v[I]);
+    system("Pause");
+
+}
+int main(){
+int opc;
+int x,y;
+do{
+    system("CLS");
+    printf("Arreglos Desordenados \n");
+    printf("1. Insertar \n");
+    printf("2. Eliminar \n");
+    printf("3. Modificar \n");
+    printf("4. Mostrar \n");
+    printf("5. Salir \n");
+
+    printf("Opcion: ");
+    scanf("%i", &opc);
+
+    switch(opc){
+    case 1: //Insertar un elemento
+    printf("Valor a insertar: ");
+    scanf("%i", &x);
+    InsertarDesordenado(x);
+    break;
+    case 2: //Eliminar un elemento
+    printf("Valor a eliminar: ");
+    scanf("%i", &y);
+    EliminarDesordenado(y);
+    break;
+    case 3:// Modificar un elemento
+    printf("Valor a modificar: %i");
+    scanf("%i",&x);
+    printf("Nuevo valor: ");
+    scanf("%i",&y);
+    ModificarDesordenado(x,y);
+    break;
+    case 4: //Mostrar Arreglo
+    printf("Arreglo a mostrar:");
+    MostrarArreglo();
+    break;
+    }//fin switch
+
+  }
+  while (opc!= 5); //Opcion de Salida
+
+ //fin Menu Principal
+    return 0;
+}
