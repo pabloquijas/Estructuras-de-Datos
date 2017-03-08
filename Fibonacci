@@ -1,0 +1,25 @@
+/*
+TERMINADO
+Garcia Quijas Juan Pablo
+07/03/07
+*/
+#include<cstdio>
+int fibo(int i){
+
+    if (i == 1 || i == 2) return 1;
+    else return fibo(i-1) + fibo(i-2);
+    //Caso recursivo
+}
+
+int main(){
+    int i;
+    printf("Introduzca el valor a evaluar: ");
+    scanf("%i", &i);
+    //Proceso
+
+    printf("f%i: %i", i, fibo(i));
+    //Salida
+
+
+return 0;
+}
