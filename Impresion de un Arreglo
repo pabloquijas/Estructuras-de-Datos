@@ -1,0 +1,24 @@
+#include <cstdio>
+void Arreglo_imp(int * A,int N){
+    A = new int[N];
+
+    for(int i = 0; i < N; i++){
+        scanf("%i", &A[i]);
+    }
+    for(int j = 0; j < N; j++){
+        printf("%i", A[j]);
+    }
+
+}
+int main(){
+    int n;
+    int * A;
+
+    scanf("%i", &n);
+
+    if(n != 0){
+        Arreglo_imp(A, n - 1);
+    }
+    return 0;
+}
+
