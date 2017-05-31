@@ -1,0 +1,102 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+using namespace std;
+
+#define MAX 50
+
+typedef int TipoDato;
+
+struct Cola{
+            int Frente;
+            int Final;
+            TipoDato Elementos[MAX];
+           };
+           
+typedef struct Cola TipoCola;
+
+void InicializarCola( TipoCola &C )
+{
+  C.Frente= -1;
+  C.Final = -1;   
+ };
+ 
+bool ColaVacia( TipoCola C )
+{
+  if ((C.Frente == -1) && (C.Final==-1))
+      return true;
+  else
+      return false;       
+};    
+
+bool ColaLlena( TipoCola C )
+{
+  if (((C.Frente == 0) && (C.Final == MAX-1)) ||
+     (C.Final+1 == C.Frente))
+      return true;
+  else
+      return false;       
+};    
+           
+void InsertarCola( TipoCola &C, TipoDato x )
+{
+  if ( ColaLlena(C)== true)
+     {
+      printf("La estructura Cola... Esta Llena!");
+      system("pause");
+      }
+  else
+      {
+       if (ColaVacia(C)== true )
+          {
+           C.Frente++;
+           C.Final++;
+           }
+       else
+          if (C.Final== MAX-1)
+              C.Final = 0;
+          else    
+              C.Final++;
+       C.Elementos[C.Final]= x;
+      }
+}
+ 
+TipoDato EliminarCola(TipoCola &C)
+{ TipoDato x;
+  if ( ColaVacia(C)== 1)
+     {
+      printf("La estructura Cola... Esta Vacia!");
+      system("pause");
+      }
+  else
+      {
+       x= C.Elementos[C.Frente];
+                      
+       if (C.Frente == C.Final ) // hay un solo elemento
+          InicializarCola( C );
+       else
+          if (C.Frente== MAX-1)
+              C.Frente = 0;
+          else
+           C.Frente++;
+      }
+   return x;      
+ }
+             
+           
+int main(){
+    // Declarar variable Tipo Cola
+    TipoCola A;
+    // Inicializar Cola
+    InicializarCola( A );
+
+    for (int i=1; i<=50; i=i+2)
+        InsertarCola( A, i );
+        
+    while ( ColaVacia( A )!= 1)
+           printf( "%i \n", EliminarCola( A ));
+           
+    system("pause");           
+    
+    return 0;
+}    
